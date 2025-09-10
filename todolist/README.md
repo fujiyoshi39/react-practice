@@ -1,69 +1,75 @@
-# React + TypeScript + Vite
+# 🎯 Pomodoro TodoList
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 概要
+**Pomodoro TodoList** は、ポモドーロ・テクニック（25分間の集中作業 + 休憩）を取り入れたタスク管理アプリです。  
+通常のToDoリストに「集中タイマー」を組み合わせることで、1つのタスクに集中して取り組むことができます。  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 機能
 
-## Expanding the ESLint configuration
+### ✅ タスク管理
+- タスクを作成・削除できる
+- タスクは「未完了」「対応中」「完了」の3つのカテゴリーに分類される
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📝 未完了
+- 新規作成されたタスクは自動的に「未完了」に入る
+- 「未完了」タスクは削除可能
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🚀 対応中
+- 「未完了」から1つだけ「対応中」に移動できる
+- **STARTボタン**を押すと画面が切り替わり、25分の集中タイマーが開始
+- 対応中画面には「対応中タスク」と「25分タイマー」が表示される
+- 25分経過後、元の画面に戻り「完了」か「未完了」に振り分けることができる
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### ✅ 完了
+- 完了済みタスクは「完了」カテゴリーに移動
+- 見やすいように**薄い灰色**で表示される
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 画面イメージ（ワイヤーフレーム）
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 📌 最初の画面
+- タスク入力フォーム
+- 「未完了」「対応中」「完了」リストが表示される
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 📌 STARTボタンを押したとき
+- 25分タイマーと「対応中タスク」だけが表示される集中画面に切り替わる
+
+### 📌 25分経過後
+- 「完了していない」 or 「完了した」の選択ボタンを表示
+- 選択後は再び最初の画面に戻る
+
+---
+
+## 使用技術
+- **React** (with Vite)
+- **TypeScript**
+- **TailwindCSS**
+- 状態管理: React Hooks (`useState`, `useEffect`)
+- タイマー管理: `setInterval` / `setTimeout`
+
+---
+
+## 今後の拡張アイデア
+- 集中タイマーのカスタマイズ（例: 50分作業 + 10分休憩）
+- 完了タスクの統計表示
+- ダークモード対応
+- 音や通知によるタイマー完了アラート
+
+---
+
+## セットアップ方法
+```bash
+# リポジトリをクローン
+git clone https://github.com/your-username/pomodoro-todolist.git
+
+# ディレクトリに移動
+cd pomodoro-todolist
+
+# 依存関係をインストール
+npm install
+
+# 開発サーバー起動
+npm run dev
